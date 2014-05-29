@@ -1,4 +1,4 @@
-# Pybitcointools, Python library for Bitcoin signatures and transactions
+# Pyblackcointools, Python library for BlackCoin signatures and transactions
 
 ### Advantages:
 
