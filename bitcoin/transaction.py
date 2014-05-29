@@ -54,6 +54,7 @@ def deserialize(tx):
 
     obj = { "ins" : [] , "outs" : [] }
     obj["version"] = read_as_int(4)
+    obj["time"] = read_as_int(4)
     ins = read_var_int()
     for i in range(ins):
         obj["ins"].append({
@@ -78,6 +79,7 @@ def serialize(txobj):
     if json_is_base(txobj,16):
         return serialize(json_changebase(txobj,lambda x: x.decode('hex'))).encode('hex')
     o.append(encode(txobj["version"],256,4)[::-1])
+    o.append(encode(txobj["time"],256,4)[::-1])
     o.append(num_to_var_int(len(txobj["ins"])))
     for inp in txobj["ins"]:
         o.append(inp["outpoint"]["hash"][::-1])
@@ -293,7 +295,7 @@ def mktx(*args): # [in0, in1...],[out0, out1...] or in0, in1 ... out0 out1 ...
         else:
             (ins if is_inp(arg) else outs).append(arg)
 
-    txobj = { "locktime" : 0, "version" : 1,"ins" : [], "outs" : [] }
+    txobj = { "version" : 1, "time" : int(time.time()), "ins" : [], "outs" : [], "locktime" : 0 }
     for i in ins:
         if isinstance(i,dict) and "outpoint" in i:
             txobj["ins"].append(i)
