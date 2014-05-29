@@ -548,6 +548,10 @@ def ecdsa_raw_sign(msghash, priv):
     r, y = fast_multiply(G, k)
     s = inv(k, N) * (z + r*decode_privkey(priv)) % N
 
+    # enforce low S values (BIP 62)
+    if s > N / 2:
+        s = N - s
+
     return 27+(y % 2), r, s
 
 
