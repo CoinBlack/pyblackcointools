@@ -168,7 +168,7 @@ def mk_scripthash_script(addr):
 
 # Address representation to output script
 def address_to_script(addr):
-    if addr[0] == '3': return mk_scripthash_script(addr)
+    if addr[0] == 'b': return mk_scripthash_script(addr)
     else: return mk_pubkey_script(addr)
 
 # Output script to address representation
