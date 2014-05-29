@@ -394,6 +394,10 @@ def ecdsa_raw_sign(msghash,priv):
     r,y = base10_multiply(G,k)
     s = inv(k,N) * (z + r*decode_privkey(priv)) % N
 
+    # enforce low S values
+    if s > N / 2:
+        s = N - s
+
     return 27+(y%2),r,s
 
 def ecdsa_sign(msg,priv):
