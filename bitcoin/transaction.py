@@ -203,7 +203,7 @@ def mk_scripthash_script(addr):
 
 
 def address_to_script(addr):
-    if addr[0] == '3' or addr[0] == '2':
+    if addr[0] == 'b' or addr[0] == '2':
         return mk_scripthash_script(addr)
     else:
         return mk_pubkey_script(addr)
@@ -226,7 +226,7 @@ def script_to_address(script, vbyte=0):
         return bin_to_b58check(script[2:-1], scripthash_byte)
 
 
-def p2sh_scriptaddr(script, magicbyte=5):
+def p2sh_scriptaddr(script, magicbyte=85):
     if re.match('^[0-9a-fA-F]*$', script):
         script = binascii.unhexlify(script)
     return hex_to_b58check(hash160(script), magicbyte)
