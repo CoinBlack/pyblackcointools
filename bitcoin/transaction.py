@@ -373,7 +373,13 @@ def is_inp(arg):
     return len(arg) > 64 or "output" in arg or "outpoint" in arg
 
 
-def mktx(*args):
+def mktx(*args, **kwargs):
+    # time=1393221600
+    if ('time' in kwargs):
+        tm = int(kwargs['time'])
+    else:
+        tm = int(time.time())
+
     # [in0, in1...],[out0, out1...] or in0, in1 ... out0 out1 ...
     ins, outs = [], []
     for arg in args:
@@ -382,7 +388,7 @@ def mktx(*args):
         else:
             (ins if is_inp(arg) else outs).append(arg)
 
-    txobj = {"version": 1, "time": int(time.time()), "ins": [], "outs": [], "locktime": 0}
+    txobj = {"version": 1, "time": tm, "ins": [], "outs": [], "locktime": 0}
     for i in ins:
         if isinstance(i, dict) and "outpoint" in i:
             txobj["ins"].append(i)
