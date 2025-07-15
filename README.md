@@ -63,6 +63,18 @@ Roadmap:
 
 * Not a full node, has no idea what blocks are
 
+### Donate
+
+To donate to this project for continued maintenance and development of more wallet types & coins, donate here:
+
+Bitcoin: bc1q4q78m7n75d9zx28ukjuty5f5yrxk8kjnmymp83
+Litecoin: ltc1q0ddun0qdr22t0r79f88u60u6ha2dclnj2rvtt9
+Doge: DMpjzbhC5DwbvV12bA3cdd7aJPoYXYDXzh
+Dash: XpZ69PQhGzWj6dLpGbFoNiSBYDqWZ9L7B2
+Bitcoin Cash: qrjnh9q2txhlrng5un49qrlm384ayg0f9syey3cy76
+Ethereum: 0x49B1e6AAEE3EBb49B2a71F053d1eeF6b28F5dAe4
+
+
 ### Example usage - the long way (best way to learn :) ):
 
 WARNING: While it's fun to mess around with this on the testnet, do not do the following procedure on the mainnet unless you really know what you are doing. Any value in the inputs not included in the outputs will be lost.
