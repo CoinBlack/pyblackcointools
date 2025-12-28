@@ -6,3 +6,5 @@ certifi
 janus
 packaging
 typing_extensions
+setuptools
+pytest
