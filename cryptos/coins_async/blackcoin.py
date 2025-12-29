@@ -1,4 +1,5 @@
 from .base import BaseCoin
+from ..electrumx_client.types import ElectrumXBalanceResponse
 
 
 class Blackcoin(BaseCoin):
@@ -33,3 +34,88 @@ class Blackcoin(BaseCoin):
             "p2sh": 0x043587CF,
         },
     }
+
+    async def get_balance(self, addr: str) -> ElectrumXBalanceResponse:
+        """Get balance with enhanced error handling for server connectivity issues"""
+        try:
+            return await BaseCoin.get_balance(self, addr)
+        except Exception as e:
+            if "CannotConnectToAnyElectrumXServer" in str(
+                e
+            ) or "Unable to connect to any ElectrumX Server" in str(e):
+                raise ConnectionError(
+                    f"Blackcoin ElectrumX servers are currently unreachable. "
+                    f"This is a known issue with the Blackcoin network infrastructure. "
+                    f"Please check the Blackcoin community for updated server information, "
+                    f"or consider running your own Blackcoin ElectrumX server. "
+                    f"Original error: {e}"
+                )
+            raise e
+
+    async def get_transactions(self, addr: str) -> list:
+        """Get transactions with enhanced error handling"""
+        try:
+            return await BaseCoin.get_transactions(self, addr)
+        except Exception as e:
+            if "CannotConnectToAnyElectrumXServer" in str(
+                e
+            ) or "Unable to connect to any ElectrumX Server" in str(e):
+                raise ConnectionError(
+                    f"Blackcoin ElectrumX servers are currently unreachable. "
+                    f"This is a known issue with the Blackcoin network infrastructure. "
+                    f"Please check the Blackcoin community for updated server information, "
+                    f"or consider running your own Blackcoin ElectrumX server. "
+                    f"Original error: {e}"
+                )
+            raise e
+
+    async def get_unspent_outputs(self, addr: str) -> list:
+        """Get unspent outputs with enhanced error handling"""
+        try:
+            return await BaseCoin.get_unspent_outputs(self, addr)
+        except Exception as e:
+            if "CannotConnectToAnyElectrumXServer" in str(
+                e
+            ) or "Unable to connect to any ElectrumX Server" in str(e):
+                raise ConnectionError(
+                    f"Blackcoin ElectrumX servers are currently unreachable. "
+                    f"This is a known issue with the Blackcoin network infrastructure. "
+                    f"Please check the Blackcoin community for updated server information, "
+                    f"or consider running your own Blackcoin ElectrumX server. "
+                    f"Original error: {e}"
+                )
+            raise e
+
+    async def get_transactions(self, addr: str) -> list:
+        """Get transactions with enhanced error handling"""
+        try:
+            return await super().get_transactions(addr)
+        except Exception as e:
+            if "CannotConnectToAnyElectrumXServer" in str(
+                e
+            ) or "Unable to connect to any ElectrumX Server" in str(e):
+                raise ConnectionError(
+                    f"Blackcoin ElectrumX servers are currently unreachable. "
+                    f"This is a known issue with the Blackcoin network infrastructure. "
+                    f"Please check the Blackcoin community for updated server information, "
+                    f"or consider running your own Blackcoin ElectrumX server. "
+                    f"Original error: {e}"
+                )
+            raise e
+
+    async def get_unspent_outputs(self, addr: str) -> list:
+        """Get unspent outputs with enhanced error handling"""
+        try:
+            return await super().get_unspent_outputs(addr)
+        except Exception as e:
+            if "CannotConnectToAnyElectrumXServer" in str(
+                e
+            ) or "Unable to connect to any ElectrumX Server" in str(e):
+                raise ConnectionError(
+                    f"Blackcoin ElectrumX servers are currently unreachable. "
+                    f"This is a known issue with the Blackcoin network infrastructure. "
+                    f"Please check the Blackcoin community for updated server information, "
+                    f"or consider running your own Blackcoin ElectrumX server. "
+                    f"Original error: {e}"
+                )
+            raise e
